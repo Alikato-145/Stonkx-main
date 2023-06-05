@@ -19,10 +19,7 @@ const AddItem = ({ navigation }) => {
 
   const check = async () => {
   
-    if (!nameItem || !price || !url) {
-      Alert.alert("", "Please fill all input!");
-      return;
-    } if(price <=0 ){
+    if (!nameItem || !price || !url ||price <=0 ||!url.includes("https")) {
       Alert.alert("","Your information is not collect please try again");
       return;
     }else {

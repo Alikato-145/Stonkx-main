@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Button, TouchableOpacity,Pressable } from "react-native";
+import { View, Text, ScrollView, Button, TouchableOpacity,Pressable, SafeAreaView} from "react-native";
 import React, { useState, useEffect } from "react";
 import Card from "../components/Card";
 import pb from "../libs/pocketbase";
@@ -41,11 +41,13 @@ const HomeScreen = ({ navigation }) => {
   const openGame = () => {
     navigation.navigate("Question");
   };
+  
   return (
+    <View>
     <View>
       {adminMenu && (
         <View>
-          <Button title="admin" onPress={() => navigation.navigate("Admin")} />
+          <Button title="Add NFT" onPress={() => navigation.navigate("Admin")} />
         </View>
       )}
       <Button title="Logout" onPress={handleLogout} />
@@ -66,8 +68,10 @@ const HomeScreen = ({ navigation }) => {
         </Pressable>
       </View>
       <Text style={{fontSize:20, fontWeight:'bold', textAlign:'right',paddingRight:20}}>MBA count : {user.coin}</Text>
+      </View>
+      <SafeAreaView>
       <ScrollView>
-        <View style={{ padding: 20 }}>
+        <View style={{alignItems:'center',justifyContent:'center'}}>
           {items.map(({ id, name, url, price }) => (
             <TouchableOpacity
               onPress={() =>
@@ -79,7 +83,9 @@ const HomeScreen = ({ navigation }) => {
           ))}
         </View>
       </ScrollView>
+      </SafeAreaView>
     </View>
+   
   );
 };
 

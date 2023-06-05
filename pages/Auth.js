@@ -13,9 +13,9 @@ import pb from "../libs/pocketbase";
 
 function Auth({ navigation }) {
   const [loginMode, setLoginMode] = useState(true);
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState("admin");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("admin123");
   const [conpassword, setconpassword] = useState("");
   const [user, setUser] = useState(null);
 

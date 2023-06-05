@@ -7,43 +7,46 @@ import {
   ScrollView,
 } from 'react-native';
 import React from "react";
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Card = ({ navigation, id, name, url, price }) => {
   return (
+    <SafeAreaView>
     <View
       style={{
         alignItems: "center",
-        flex: 1,
-        flexDirection: "column",
+        flexDirection: "row",
+      
       }}
     >
       <View
         style={{
-          flex: 0.07, //Thickness Bar
+          flex:1,//Thickness Bar
           marginTop: 20,
           width: "100%",
           flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "flex-end",
+          alignItems:'center',justifyContent:'center'
         }}
       >
       </View>
-      <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
-        <View style={{}}>
+      <SafeAreaView>
+      <ScrollView showsVerticalScrollIndicator={false} >
+        <View style={{paddingTop:20,paddingBottom:20}}>
           <Image
             source={{
               uri: url,
             }}
-            style={{ width: 200, height: 200, marginTop: 50 }}
+            style={{ width: 200, height: 200}}
           />
           <Text style={{fontSize:18, fontWeight:'bold'}}>Name : {name}</Text>
           <Text style={{fontSize:18, fontWeight:'bold'}}>Price : {price}</Text>
         </View>
       </ScrollView>
+      </SafeAreaView>
     </View>
+    </SafeAreaView>
   );
 };
 
 export default Card;
 
-const styles = StyleSheet.create({});
