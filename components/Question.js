@@ -9,6 +9,9 @@ const Question = ({ navigation }) => {
   const [coin, setCoin] = useState(0);
   const [user, setUser] = useState("");
   const userId = pb.authStore.model.id;
+  const [textResult, settextResult] = useState('');
+  const [result, setresult] = useState(false);
+  
 
   useEffect(() => {
     getUser();
@@ -31,10 +34,10 @@ const Question = ({ navigation }) => {
     let num = qNum;
     let checknum =questions.length-1
     if (checknum == num) {
-      upDateCoin()
-      navigation.navigate("HomePage");
       setCoin(0);
       setqNum(0);
+      settextResult('Total MBA coin after play the game : ' + coin);
+      setresult(true);
     } else {
       if (questions[num].ans == checkans) {
         Alert.alert("", "Correct");
@@ -46,53 +49,77 @@ const Question = ({ navigation }) => {
       setqNum(num + 1);
     }
   };
-
+  const goback = () =>{
+    navigation.navigate('HomePage');
+  }
   return (
     <>
-      <View
-        style={{ flex: 0.3, justifyContent: "center", alignItems: "center" }}
-      >
-        <Text style={styles.headerQuestion}>Question</Text>
-      </View>
-      <View
-        style={{ flex: 0.5, justifyContent: "center", alignItems: "center" }}
-      >
-        <Text style={{fontSize:30}}>{questions[qNum]?.question}</Text>
-        <Text style={{fontSize:20}}>MBA coin : {coin}</Text>
-      </View>
-      <View
-        style={{
-          flex: 1,
-          flexDirection: "row",
-          justifyContent: "space-between",
-          marginHorizontal: 6,
-        }}
-      >
-        <View style={{ width: 150 }}>
+    <View
+      style={{ flex: 0.3, justifyContent: 'center', alignItems: 'center' }}>
+      <Text style={styles.headerQuestion}>Question</Text>
+    </View>
+    {result && (
+      <View>
+        <Text style={[styles.headerQuestion, { fontSize: 24 }]}>
+          {textResult}
+        </Text>
+        <View style={{ width: '100%', alignItems: 'center', padding: 40 }}>
           <Button
-            title="True"
-            color="green"
-            onPress={() => {
-              let copyAns = true;
-              setAns(copyAns);
-              check(copyAns);
-            }}
+            title="Go Back to Home Page"
+            color="blue"
+            onPress={goback}
           />
         </View>
+      </View>
+    )}
 
-        <View style={{ width: 150 }}>
-          <Button
-            title="false"
-            color="red"
-            onPress={() => {
-              let copyAns = false;
-              setAns(copyAns);
-              check(copyAns);
-            }}
-          />
+    {!result && (
+      <View>
+        <View
+          style={{
+            flex: 0.5,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Text style={{ fontSize: 30 }}>{questions[qNum]?.question}</Text>
+          <Text style={{ fontSize: 20, paddingBottom: 60 }}>
+            MBA coin : {coin}
+          </Text>
+        </View>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginHorizontal: 6,
+          }}>
+          <View style={styles.Button}>
+            <Button
+              title="True"
+              color="green"
+              onPress={() => {
+                let copyAns = true;
+                setAns(copyAns);
+                check(copyAns);
+              }}
+            />
+          </View>
+
+          <View style={styles.Button}>
+            <Button
+              title="false"
+              color="red"
+              onPress={() => {
+                let copyAns = false;
+                setAns(copyAns);
+                check(copyAns);
+              }}
+            />
+          </View>
         </View>
       </View>
-    </>
+    )}
+  </>
   );
 };
 const styles = StyleSheet.create({

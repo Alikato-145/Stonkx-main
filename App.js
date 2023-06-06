@@ -13,6 +13,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+      
       <Stack.Screen name='Login' component={Auth} options={{ title: "Login | Register" }} />
         <Stack.Screen name='HomePage' component={HomeScreen} options={{ title: "Home", headerBackVisible: false }} />
         <Stack.Screen name='Admin' component={AddItem} options={{ title: "Admin" }} />

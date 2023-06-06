@@ -1,16 +1,16 @@
 migrate((db) => {
   const collection = new Collection({
-    "id": "54zwr7el8ay26v3",
-    "created": "2023-06-03 04:46:44.947Z",
-    "updated": "2023-06-03 04:46:44.947Z",
-    "name": "users",
+    "id": "39p9z5g0nxtp58l",
+    "created": "2023-06-06 12:09:55.685Z",
+    "updated": "2023-06-06 12:09:55.685Z",
+    "name": "nfts",
     "type": "base",
     "system": false,
     "schema": [
       {
         "system": false,
-        "id": "8mx8bjij",
-        "name": "username",
+        "id": "3vdothzy",
+        "name": "name",
         "type": "text",
         "required": false,
         "unique": false,
@@ -22,8 +22,8 @@ migrate((db) => {
       },
       {
         "system": false,
-        "id": "ni4gksnm",
-        "name": "gmail",
+        "id": "43zctkem",
+        "name": "url",
         "type": "text",
         "required": false,
         "unique": false,
@@ -35,8 +35,8 @@ migrate((db) => {
       },
       {
         "system": false,
-        "id": "7tlcdzrk",
-        "name": "password",
+        "id": "yx96t435",
+        "name": "price",
         "type": "text",
         "required": false,
         "unique": false,
@@ -45,6 +45,15 @@ migrate((db) => {
           "max": null,
           "pattern": ""
         }
+      },
+      {
+        "system": false,
+        "id": "9t62jwzg",
+        "name": "sold",
+        "type": "bool",
+        "required": false,
+        "unique": false,
+        "options": {}
       }
     ],
     "indexes": [],
@@ -59,7 +68,7 @@ migrate((db) => {
   return Dao(db).saveCollection(collection);
 }, (db) => {
   const dao = new Dao(db);
-  const collection = dao.findCollectionByNameOrId("54zwr7el8ay26v3");
+  const collection = dao.findCollectionByNameOrId("39p9z5g0nxtp58l");
 
   return dao.deleteCollection(collection);
 })
