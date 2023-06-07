@@ -29,7 +29,7 @@ const Card = ({ navigation, id, name, url, price }) => {
         }}
       >
       </View>
-      <ScrollView showsVerticalScrollIndicator={false} >
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{paddingTop:20,paddingBottom:20}}>
           <Image
             source={{
