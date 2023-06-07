@@ -11,7 +11,7 @@ const Question = ({ navigation }) => {
   const userId = pb.authStore.model.id;
   const [textResult, settextResult] = useState('');
   const [result, setresult] = useState(false);
-  
+
 
   useEffect(() => {
     getUser();
@@ -22,7 +22,7 @@ const Question = ({ navigation }) => {
     setUser(record);
   };
 
-  const upDateCoin = async() =>{
+  const upDateCoin = async () => {
     const up = user.coin += coin
     const data = {
       coin: up,
@@ -32,9 +32,8 @@ const Question = ({ navigation }) => {
 
   const check = async (checkans) => {
     let num = qNum;
-    let checknum =questions.length-1
+    let checknum = questions.length - 1
     if (checknum == num) {
-      setCoin(0);
       setqNum(0);
       settextResult('Total MBA coin after play the game : ' + coin);
       setresult(true);
@@ -49,50 +48,43 @@ const Question = ({ navigation }) => {
       setqNum(num + 1);
     }
   };
-  const goback = () =>{
+  const goback = () => {
+    upDateCoin();
+    console.log(coin);
+    setCoin(0);
     navigation.navigate('HomePage');
   }
   return (
-    <>
-    <View
-      style={{ flex: 0.3, justifyContent: 'center', alignItems: 'center' }}>
+    <View>
+    <View style={{ justifyContent: "center", alignItems: "center" }}>
       <Text style={styles.headerQuestion}>Question</Text>
     </View>
-    {result && (
+    {result ? (
       <View>
-        <Text style={[styles.headerQuestion, { fontSize: 24 }]}>
-          {textResult}
-        </Text>
-        <View style={{ width: '100%', alignItems: 'center', padding: 40 }}>
-          <Button
-            title="Go Back to Home Page"
-            color="blue"
-            onPress={goback}
-          />
+        <Text style={[styles.headerQuestion, { fontSize: 24 }]}>{textResult}</Text>
+        <View style={{ width: "100%", alignItems: "center", padding: 40 }}>
+          <Button title="Go Back to Home Page" color="blue" onPress={goback} />
         </View>
       </View>
-    )}
-
-    {!result && (
+    ) : (
       <View>
         <View
           style={{
-            flex: 0.5,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
           <Text style={{ fontSize: 30 }}>{questions[qNum]?.question}</Text>
-          <Text style={{ fontSize: 20, paddingBottom: 60 }}>
-            MBA coin : {coin}
-          </Text>
+          <Text style={{ fontSize: 20, paddingBottom: 60 }}>MBA coin : {coin}</Text>
         </View>
         <View
           style={{
-            flex: 1,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginHorizontal: 6,
-          }}>
+           
+            flexDirection: "row",
+            justifyContent: "space-between",
+            marginHorizontal: 6
+          }}
+        >
           <View style={styles.Button}>
             <Button
               title="True"
@@ -119,17 +111,23 @@ const Question = ({ navigation }) => {
         </View>
       </View>
     )}
-  </>
+  </View>
+
+
+
   );
 };
 const styles = StyleSheet.create({
   headerQuestion: {
     textAlign: "center",
-    fontSize: 36,
+    fontSize: 40,
     fontWeight: "bold",
     marginBottom: 0,
     padding: 12,
     color: "red",
+  },Button: {
+    width: 150,
+    paddingTop: 50,
   },
 });
 export default Question;

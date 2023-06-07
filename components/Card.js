@@ -29,7 +29,6 @@ const Card = ({ navigation, id, name, url, price }) => {
         }}
       >
       </View>
-      <SafeAreaView>
       <ScrollView showsVerticalScrollIndicator={false} >
         <View style={{paddingTop:20,paddingBottom:20}}>
           <Image
@@ -42,7 +41,7 @@ const Card = ({ navigation, id, name, url, price }) => {
           <Text style={{fontSize:18, fontWeight:'bold'}}>Price : {price}</Text>
         </View>
       </ScrollView>
-      </SafeAreaView>
+      
     </View>
     </SafeAreaView>
   );
