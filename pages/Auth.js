@@ -24,7 +24,10 @@ function Auth({ navigation }) {
       Alert.alert("", "Username or Password or email must not be empty!!!");
       return;
     }
-
+    if (password.length <=8 ||conpassword <=8) {
+      Alert.alert("", "Your password must be at least 8 characters long.");
+      return;
+    }
     const records = await pb.collection("users").getFullList({
       filter: `username = "${username}" || email = "${email}"`,
     });
